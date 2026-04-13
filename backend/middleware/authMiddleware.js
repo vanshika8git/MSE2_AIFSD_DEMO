@@ -1,0 +1,29 @@
+const jwt = require("jsonwebtoken");
+const Student = require("../models/Student.js");
+
+const protect = async (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization?.startsWith("Bearer")) {
+        try {
+            token = req.headers.authorization.split(" ")[1];
+
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+            req.user = await Student.findById(decoded.id).select("-password");
+
+            next();
+        } catch (error) {
+            return res.status(401).json({ message: "Not authorized, token failed" });
+        }
+    }
+
+    if (!token) {
+        return res.status(401).json({ message: "No token, not authorized" });
+    }
+};
+
+module.exports = protect;
+
+//verifies the token generated at backend, where login function is. Login successful k just baad
+//if token is valid then it allows to access the protected routes
