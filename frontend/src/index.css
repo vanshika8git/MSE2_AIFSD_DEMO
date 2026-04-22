@@ -1,0 +1,16 @@
+/* LIGHT MODE */
+body {
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    color: black;
+}
+
+/* DARK MODE */
+body.dark {
+    background: linear-gradient(135deg, #0f172a, #020617);
+    color: white;
+}
+
+/* Scroll smooth */
+html {
+    scroll-behavior: smooth;
+}

@@ -136,3 +136,17 @@ exports.updateCourse = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+/* =========================
+   GET PROFILE
+========================= */
+exports.getProfile = async (req, res) => {
+    try {
+        const user = await Student.findById(req.user._id).select("-password");
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};

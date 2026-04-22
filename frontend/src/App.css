@@ -1,0 +1,28 @@
+/* Smooth UI */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font + transitions */
+body {
+    font-family: "Segoe UI", sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Buttons global */
+button {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Links */
+a {
+    text-decoration: none;
+}
