@@ -10,10 +10,18 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await API.post("/login", form);
-        localStorage.setItem("token", res.data.token);
+        try {
+            const res = await API.post("/login", form);
 
-        navigate("/dashboard");
+            localStorage.setItem("token", res.data.token);
+
+            alert("Login successful");
+
+            navigate("/dashboard");
+
+        } catch (err) {
+            alert(err.response?.data?.message || "Invalid credentials");
+        }
     };
 
     return (
@@ -22,8 +30,20 @@ function Login() {
                 <h2>Login</h2>
 
                 <form onSubmit={handleSubmit}>
-                    <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                    <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
+                    <input
+                        placeholder="Email"
+                        onChange={(e) =>
+                            setForm({ ...form, email: e.target.value })
+                        }
+                    />
+
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        onChange={(e) =>
+                            setForm({ ...form, password: e.target.value })
+                        }
+                    />
 
                     <button type="submit">Login</button>
                 </form>
