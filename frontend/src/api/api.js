@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000/api"
+    baseURL: "https://aifsd-mse2-n5ma.onrender.com/api"
 });
 
 // Attach token automatically
