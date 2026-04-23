@@ -1,0 +1,130 @@
+body {
+    font-family: Arial;
+    background: #f4f6f8;
+    margin: 0;
+}
+
+.container {
+    width: 400px;
+    margin: auto;
+    margin-top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input,
+select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+.card {
+    background: #eee;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* KEEP YOUR OLD STYLES ABOVE THIS */
+
+/* ================= NAVBAR ================= */
+.new-navbar {
+    background: white;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+}
+
+.nav-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+}
+
+/* Logout button */
+.logout-btn {
+    background: red;
+    color: white;
+    border: 1px solid black;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+/* ================= DASHBOARD BACKGROUND ================= */
+.dashboard-bg {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+}
+
+/* ================= DASHBOARD BOX ================= */
+.dashboard-container {
+    width: 400px;
+    margin: auto;
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    /* light opacity */
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+}
+
+/* ================= INPUTS ================= */
+.dashboard-container input,
+.dashboard-container select {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: black;
+}
+
+/* ================= BUTTONS ================= */
+.black-btn {
+    background: black;
+    color: white;
+}
+
+.green-btn {
+    background: green;
+    color: white;
+}
+
+.red-btn {
+    background: red;
+    color: white;
+}
+
+/* ================= CARDS ================= */
+.white-card {
+    background: white;
+    opacity: 1;
+    color: black;
+    border-radius: 8px;
+    padding: 15px;
+}
