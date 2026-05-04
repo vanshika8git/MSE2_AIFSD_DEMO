@@ -39,7 +39,7 @@ const Chatbot = () => {
     history.push({ role: "user", content: userMessage.text });
 
     try {
-      const response = await fetch("https://mse2-aifsd-demo.onrender.com/api/chat", { //here change the link to ur deployed backend url
+      const response = await fetch("https://mse2-aifsd-demo-1.onrender.com/api/chat", { //here change the link to ur deployed backend url
         method: "POST",
         headers: {
           "Content-Type": "application/json",
