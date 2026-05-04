@@ -70,7 +70,7 @@ RULES:
                 "X-Title": "AIFSD Chatbot"
             },
             body: JSON.stringify({
-                model: "openai/gpt-3.5-turbo",
+                model: "openai/gpt-4o-mini", // Upgraded for better tool calling reliability
                 messages: [
                     { role: "system", content: systemPrompt },
                     ...messages
@@ -98,6 +98,7 @@ RULES:
             for (const toolCall of responseMessage.tool_calls) {
                 const args = JSON.parse(toolCall.function.arguments);
                 const { action, title, description, category, grievanceId } = args;
+                console.log(`AI triggering action: ${action} for user: ${userId}`);
 
                 try {
                     if (action === "create") {
@@ -108,6 +109,7 @@ RULES:
                             user: userId
                         });
                         await newGrievance.save();
+                        console.log("Grievance created successfully");
                         return res.status(200).json({ reply: `Success! I have created your grievance: "${title}" in the ${category} category.` });
                     }
 
@@ -116,16 +118,24 @@ RULES:
                         const updated = await Grievance.findOneAndUpdate(
                             query,
                             { status: "Resolved" },
-                            { new: true, sort: { date: -1 } }
+                            { returnDocument: 'after', sort: { date: -1 } }
                         );
-                        if (!updated) return res.status(200).json({ reply: `I couldn't find a grievance titled "${title}" to resolve.` });
+                        if (!updated) {
+                            console.log("Grievance not found for resolution");
+                            return res.status(200).json({ reply: `I couldn't find a grievance titled "${title}" to resolve.` });
+                        }
+                        console.log("Grievance resolved successfully");
                         return res.status(200).json({ reply: `Great news! I have marked your grievance "${updated.title}" as Resolved.` });
                     }
 
                     if (action === "delete") {
                         const query = grievanceId ? { _id: grievanceId, user: userId } : { title: { $regex: title, $options: "i" }, user: userId };
                         const deleted = await Grievance.findOneAndDelete(query, { sort: { date: -1 } });
-                        if (!deleted) return res.status(200).json({ reply: `I couldn't find a grievance titled "${title}" to delete.` });
+                        if (!deleted) {
+                            console.log("Grievance not found for deletion");
+                            return res.status(200).json({ reply: `I couldn't find a grievance titled "${title}" to delete.` });
+                        }
+                        console.log("Grievance deleted successfully");
                         return res.status(200).json({ reply: `The grievance "${deleted.title}" has been successfully deleted.` });
                     }
                 } catch (dbErr) {
