@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use("/api", require("./routes/authRoutes"));
 app.use("/api", require("./routes/grievanceRoutes"));
+app.use("/api", require("./routes/chatRoutes"));
 
 app.get("/", (req, res) => {
     res.send("Server Running");
