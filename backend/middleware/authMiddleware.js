@@ -24,3 +24,10 @@ const authMiddleware = (req, res, next) => {
 };
 
 module.exports = authMiddleware;
+
+
+//verifies the token generated at backend, where login function is. Login successful k just baad
+//if token is valid then it allows to access the protected routes
+
+        
+//Middleware -> ek esa function jo request ko controller mein jaane se pehle intercept krta hai
